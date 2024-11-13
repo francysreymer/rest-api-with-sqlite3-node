@@ -5,11 +5,6 @@ import IProducerRepository from "@/contracts/IProducerRepository";
 import TYPES from "@/config/types";
 import { WinnerProducer } from "@/types/WinnerProducer";
 
-type AwardRow = {
-  producer: string;
-  win_year: number;
-};
-
 @injectable()
 export default class ProducerRepository implements IProducerRepository {
   private repository: Database.Database;
@@ -44,7 +39,7 @@ export default class ProducerRepository implements IProducerRepository {
 
   async findByName(name: string): Promise<Producer | null> {
     const stmt = this.repository.prepare(`
-      SELECT * FROM producers WHERE name = ?
+      SELECT * FROM producers WHERE LOWER(name) = LOWER(?)
     `);
     const studio = stmt.get(name) as Producer | undefined;
     return studio || null;
@@ -74,12 +69,10 @@ export default class ProducerRepository implements IProducerRepository {
         intervals
       WHERE 
         interval IS NOT NULL
-        AND interval = (SELECT MAX(interval) FROM intervals WHERE interval IS NOT NULL)
+        AND interval = (SELECT MAX(interval) FROM intervals WHERE interval IS NOT NULL AND interval > 0)
     `);
 
-    const rows = stmt.all() as WinnerProducer[];
-
-    return rows.filter((row) => row.interval > 0);
+    return stmt.all() as WinnerProducer[];
   }
 
   async findProducersWithMinAwardIntervals(): Promise<WinnerProducer[]> {
@@ -106,11 +99,9 @@ export default class ProducerRepository implements IProducerRepository {
         intervals
       WHERE 
         interval IS NOT NULL
-        AND interval = (SELECT MIN(interval) FROM intervals WHERE interval IS NOT NULL)
+        AND interval = (SELECT MIN(interval) FROM intervals WHERE interval IS NOT NULL AND interval > 0)
     `);
 
-    const rows = stmt.all() as WinnerProducer[];
-
-    return rows.filter((row) => row.interval > 0);
+    return stmt.all() as WinnerProducer[];
   }
 }

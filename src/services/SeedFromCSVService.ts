@@ -113,7 +113,6 @@ export default class SeedFromCSVService {
         .on("data", (row) => {
           // Concatenate all columns into a single string
           const rowData = Object.values(row).join(",");
-          console.log("francys rowData: ", rowData);
           const [year, title, studios, producers, winner] = rowData.split(";");
           moviesAwards.push({
             year: parseInt(year, 10),

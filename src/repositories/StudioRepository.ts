@@ -38,7 +38,7 @@ export default class StudioRepository implements IStudioRepository {
 
   async findByName(name: string): Promise<Studio | null> {
     const stmt = this.repository.prepare(`
-      SELECT * FROM studios WHERE name = ?
+      SELECT * FROM studios WHERE LOWER(name) = LOWER(?)
     `);
     const studio = stmt.get(name) as Studio | undefined;
     return studio || null;

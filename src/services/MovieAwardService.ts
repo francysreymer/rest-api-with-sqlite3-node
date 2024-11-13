@@ -15,8 +15,8 @@ export default class MovieAwardService implements IMovieAwardService {
   }
 
   async getProducersWithMaxAndMinAwardIntervals(): Promise<{
-    max: WinnerProducer[] | [];
     min: WinnerProducer[] | [];
+    max: WinnerProducer[] | [];
   }> {
     const [producersWithMaxAwardIntervals, producersWithMinAwardIntervals] =
       await Promise.all([
@@ -25,8 +25,8 @@ export default class MovieAwardService implements IMovieAwardService {
       ]);
 
     return {
-      max: producersWithMaxAwardIntervals,
       min: producersWithMinAwardIntervals,
+      max: producersWithMaxAwardIntervals,
     };
   }
 }
