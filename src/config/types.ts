@@ -1,8 +1,12 @@
 const TYPES = {
   IMovieRepository: Symbol.for("IMovieRepository"),
-  IMovieService: Symbol.for("IMovieService"),
-  Lowdb: Symbol.for("Lowdb"),
-  DatabaseInitializerService: Symbol.for("DatabaseInitializerService"),
+  IProducerRepository: Symbol.for("IProducerRepository"),
+  IStudioRepository: Symbol.for("IStudioRepository"),
+  IMovieAwardService: Symbol.for("IMovieAwardService"),
+  DB: Symbol.for("Database"),
+  MigrationService: Symbol.for("MigrationService"),
+  SeedFromCSVService: Symbol.for("SeedFromCSVService"),
+  MovieAwardController: Symbol.for("MovieAwardController"),
 };
 
 export default TYPES;

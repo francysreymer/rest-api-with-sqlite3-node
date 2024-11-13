@@ -1,7 +1,15 @@
 import { Movie } from "@/entities/Movie";
+import { WinnerProducer } from "@/types/WinnerProducer";
 
 export default interface IMovieRepository {
-  findProducerWithMaxAwardIntervals(): Promise<Movie | null>;
-  findProducerWithMinAwardIntervals(): Promise<Movie | null>;
   save(movie: Movie): Promise<Movie>;
+  findById(id: number | bigint): Promise<Movie | null>;
+  saveManyProducers(
+    movieId: number | bigint,
+    producersIds: (number | bigint)[]
+  ): Promise<boolean>;
+  saveManyStudios(
+    movieId: number | bigint,
+    studiosIds: (number | bigint)[]
+  ): Promise<boolean>;
 }

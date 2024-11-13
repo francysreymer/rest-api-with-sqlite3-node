@@ -1,5 +1,11 @@
 # @inversifyjs/core
 
+## 1.3.3
+
+### Patch Changes
+
+- 0e347ab: Updated get metadata flow to provide better error messages when missing metadata.
+
 ## 1.3.2
 
 ### Patch Changes

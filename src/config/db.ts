@@ -1,12 +1,6 @@
-import { Low, Memory } from "lowdb";
-import { Movie } from "@/entities/Movie";
+import Database from "better-sqlite3";
 
-type Data = {
-  movies: Movie[];
-};
-
-const adapter = new Memory<Data>();
-const defaultData: Data = { movies: [] };
-const db = new Low(adapter, defaultData);
+const db = new Database(":memory:", { verbose: console.log });
+db.pragma("journal_mode = WAL");
 
 export default db;
