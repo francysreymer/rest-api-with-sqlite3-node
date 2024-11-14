@@ -6,7 +6,7 @@ An application using Node.js, TypeScript, and SQLite3.
 
 This RESTful API reads data from a CSV file and provides information about the producers of winning films with the shortest and longest gap between awards. The API returns the data in the following format:
 
-    ```json
+    ```bash
     {
         "min": [
             {
