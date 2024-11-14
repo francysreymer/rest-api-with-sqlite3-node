@@ -1,48 +1,48 @@
-# RESTful API for min and max award intervals 
+# API RESTful para intervalos mínimos e máximos de prêmios
 
-An application using Node.js, TypeScript, and SQLite3.
+Uma aplicação usando Node.js, TypeScript e SQLite3.
 
-## Introduction
+## Introdução
 
-This RESTful API allows you to read the list of nominees and winners in the Worst Picture category of the Golden Raspberry Awards.
+Esta API RESTful permite que você leia a lista de indicados e vencedores na categoria de Pior Filme do Golden Raspberry Awards.
 
-## Table of Contents
+## Índice
 
-- [Installation](#installation)
-- [Usage](#usage)
+- [Instalação](#instalação)
+- [Uso](#uso)
 
-## Installation
+## Instalação
 
-### Prerequisites
+### Pré-requisitos
 
 - [npm](https://www.npmjs.com/)
 
-### Setup
+### Configuração
 
-1. **Clone the repository:**
+1. **Clone o repositório:**
 
     ```bash
     git clone git@github.com:francysreymer/rest-api-with-sqlite3-node.git
     cd rest-api-with-sqlite3-node
     ```
 
-2. **Configure the environment variables:**
+2. **Configure as variáveis de ambiente:**
 
-    Inside the project folder, copy the `.env.example` file and rename it to `.env`. Set the `PORT` variable to the desired port number, or leave it blank to use the default port 3000.
+    Dentro da pasta do projeto, copie o arquivo `.env.example` e renomeie-o para `.env`. Defina a variável `PORT` para o número da porta desejada ou deixe em branco para usar a porta padrão 3000.
 
-3. **Install dependencies and start the server:**
+3. **Instale as dependências e inicie o servidor:**
 
     ```bash
     npm install
     npm start
     ```
 
-4. **Run the tests:**
+4. **Execute os testes:**
 
     ```bash
     npm test
     ```
 
-## Usage
+## Uso
 
-- **API Endpoint:** Accessible at [http://localhost:3000/api/movies/producers/award-intervals](http://localhost:3000/api/movies/producers/award-intervals).
+- **Endpoint da API:** Acessível em [http://localhost:3000/api/movies/producers/award-intervals](http://localhost:3000/api/movies/producers/award-intervals).
