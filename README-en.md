@@ -25,6 +25,7 @@ This RESTful API reads data from a CSV file and provides information about the p
         }
     ]
 }
+```
 
 ## Table of Contents
 
