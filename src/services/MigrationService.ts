@@ -22,6 +22,18 @@ export default class MigrationService {
     ]);
   }
 
+  public async revertMigrations(): Promise<void> {
+    await Promise.all([
+      this.dropMovieProducersTable(),
+      this.dropMovieStudiosTable(),
+    ]);
+    await Promise.all([
+      this.dropMoviesTable(),
+      this.dropProducersTable(),
+      this.dropStudiosTable(),
+    ]);
+  }
+
   private async createStudiosTable(): Promise<void> {
     this.db
       .prepare(
@@ -93,5 +105,25 @@ export default class MigrationService {
       `
       )
       .run();
+  }
+
+  private async dropStudiosTable(): Promise<void> {
+    this.db.prepare(`DROP TABLE IF EXISTS studios`).run();
+  }
+
+  private async dropProducersTable(): Promise<void> {
+    this.db.prepare(`DROP TABLE IF EXISTS producers`).run();
+  }
+
+  private async dropMoviesTable(): Promise<void> {
+    this.db.prepare(`DROP TABLE IF EXISTS movies`).run();
+  }
+
+  private async dropMovieStudiosTable(): Promise<void> {
+    this.db.prepare(`DROP TABLE IF EXISTS movie_studios`).run();
+  }
+
+  private async dropMovieProducersTable(): Promise<void> {
+    this.db.prepare(`DROP TABLE IF EXISTS movie_producers`).run();
   }
 }
