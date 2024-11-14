@@ -1,4 +1,4 @@
-# API RESTful para intervalos mínimos e máximos de prêmios
+# API RESTful para Intervalos Mínimos e Máximos de Prêmios
 
 Uma aplicação usando Node.js, TypeScript e SQLite3.
 
@@ -30,14 +30,16 @@ Esta API RESTful permite que você leia a lista de indicados e vencedores na cat
 
     Dentro da pasta do projeto, copie o arquivo `.env.example` e renomeie-o para `.env`. Defina a variável `PORT` para o número da porta desejada ou deixe em branco para usar a porta padrão 3000.
 
-3. **Instale as dependências e inicie o servidor:**
+3. **Coloque um arquivo CSV chamado `movielist.csv` dentro da pasta `/temp`.**
+
+4. **Instale as dependências e inicie o servidor:**
 
     ```bash
     npm install
     npm start
     ```
 
-4. **Execute os testes:**
+5. **Execute os testes:**
 
     ```bash
     npm test

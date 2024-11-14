@@ -30,14 +30,16 @@ This RESTful API allows you to read the list of nominees and winners in the Wors
 
     Inside the project folder, copy the `.env.example` file and rename it to `.env`. Set the `PORT` variable to the desired port number, or leave it blank to use the default port 3000.
 
-3. **Install dependencies and start the server:**
+3. **Place a CSV file named `movielist.csv` inside the `/temp` folder.**
+
+4. **Install dependencies and start the server:**
 
     ```bash
     npm install
     npm start
     ```
 
-4. **Run the tests:**
+5. **Run the tests:**
 
     ```bash
     npm test
