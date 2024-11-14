@@ -6,26 +6,26 @@ Uma aplicação usando Node.js, TypeScript e SQLite3.
 
 Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os produtores de filmes vencedores com o menor e o maior intervalo entre os prêmios. A API retorna os dados no seguinte formato:
 
-```json
-{
-    "min": [
-        {
-            "producer": "Allan Carr",
-            "interval": 5,
-            "previousWin": 1978,
-            "followingWin": 1983
-        }
-    ],
-    "max": [
-        {
-            "producer": "Steven Spielberg",
-            "interval": 10,
-            "previousWin": 1979,
-            "followingWin": 1989
-        }
-    ]
-}
-```json
+    ```json
+    {
+        "min": [
+            {
+                "producer": "Allan Carr",
+                "interval": 5,
+                "previousWin": 1978,
+                "followingWin": 1983
+            }
+        ],
+        "max": [
+            {
+                "producer": "Steven Spielberg",
+                "interval": 10,
+                "previousWin": 1979,
+                "followingWin": 1989
+            }
+        ]
+    }
+    ```
 
 ## Índice
 

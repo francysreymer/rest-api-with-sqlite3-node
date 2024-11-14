@@ -6,26 +6,26 @@ An application using Node.js, TypeScript, and SQLite3.
 
 This RESTful API reads data from a CSV file and provides information about the producers of winning films with the shortest and longest gap between awards. The API returns the data in the following format:
 
-```json
-{
-    "min": [
-        {
-            "producer": "Allan Carr",
-            "interval": 5,
-            "previousWin": 1978,
-            "followingWin": 1983
-        }
-    ],
-    "max": [
-        {
-            "producer": "Steven Spielberg",
-            "interval": 10,
-            "previousWin": 1979,
-            "followingWin": 1989
-        }
-    ]
-}
-```
+    ```json
+    {
+        "min": [
+            {
+                "producer": "Allan Carr",
+                "interval": 5,
+                "previousWin": 1978,
+                "followingWin": 1983
+            }
+        ],
+        "max": [
+            {
+                "producer": "Steven Spielberg",
+                "interval": 10,
+                "previousWin": 1979,
+                "followingWin": 1989
+            }
+        ]
+    }
+    ```
 
 ## Table of Contents
 
