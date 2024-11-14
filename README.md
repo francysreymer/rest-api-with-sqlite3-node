@@ -24,8 +24,7 @@ Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os pr
                 "followingWin": 1989
             }
         ]
-    }
-    ```
+    }```
 
 ## Índice
 
