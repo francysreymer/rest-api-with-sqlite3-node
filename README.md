@@ -4,7 +4,7 @@ Uma aplicação usando Node.js, TypeScript e SQLite3.
 
 ## Introdução
 
-Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os produtores de filmes vencedores com o menor e o maior intervalo entre os prêmios. A API retorna os dados no seguinte formato:
+Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os produtores de filmes vencedores com o menor e o maior intervalo entre os prêmios. A API retorna os dados no seguinte formato JSON:
 
 ```JSON
 {
