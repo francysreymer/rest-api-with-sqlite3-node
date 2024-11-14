@@ -5,12 +5,16 @@ import container from "@/config/container";
 import TYPES from "@/config/types";
 import SeedFromCSVService from "@/services/SeedFromCSVService";
 import MigrationService from "./services/MigrationService";
+import dotenvSafe from "dotenv-safe";
+
+// Load environment variables from .env file and ensure required variables are set
+dotenvSafe.config();
 
 const app = express();
 app.use(express.json());
 app.use("/api", movieAwardRoutes);
 
-const PORT = 3002;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, async () => {
   const migrationService = container.get<MigrationService>(
