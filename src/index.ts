@@ -8,7 +8,9 @@ import MigrationService from "./services/MigrationService";
 import dotenvSafe from "dotenv-safe";
 
 // Load environment variables from .env file and ensure required variables are set
-dotenvSafe.config();
+dotenvSafe.config({
+  allowEmptyValues: true,
+});
 
 const app = express();
 app.use(express.json());
