@@ -1,5 +1,5 @@
 import { Router } from "express";
-import container from "@/config//container";
+import container from "@/config/container";
 import TYPES from "@/config/types";
 import MovieAwardController from "@/controllers/MovieAwardController";
 
