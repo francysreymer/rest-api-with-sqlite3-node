@@ -39,50 +39,48 @@ export default class MovieRepository implements IMovieRepository {
   async saveManyProducers(
     movieId: number | bigint,
     producersIds: (number | bigint)[]
-  ): Promise<boolean> {
-    const insertStmt = this.repository.prepare(`
-      INSERT INTO movie_producers (movie_id, producer_id)
-      VALUES (?, ?)
-    `);
-
-    const insertMany = this.repository.transaction(
-      (producersIds: (number | bigint)[]) => {
-        for (const producerId of producersIds) {
-          insertStmt.run(movieId, producerId);
-        }
-      }
-    );
-
+  ): Promise<void> {
     try {
+      const insertMany = this.repository.transaction(
+        (producersIds: (number | bigint)[]) => {
+          const stmt = this.repository.prepare(`
+          INSERT INTO movie_producers (movie_id, producer_id)
+          VALUES (?, ?)
+        `);
+          for (const producerId of producersIds) {
+            stmt.run(movieId, producerId);
+          }
+        }
+      );
+
       insertMany(producersIds);
-      return true;
     } catch (error) {
-      return false;
+      console.error("Error inserting producers:", error);
+      throw new Error("Failed to insert producers");
     }
   }
 
   async saveManyStudios(
     movieId: number | bigint,
     studiosIds: (number | bigint)[]
-  ): Promise<boolean> {
-    const insertStmt = this.repository.prepare(`
-      INSERT INTO movie_studios (movie_id, studio_id)
-      VALUES (?, ?)
-    `);
-
-    const insertMany = this.repository.transaction(
-      (studiosIds: (number | bigint)[]) => {
-        for (const studioId of studiosIds) {
-          insertStmt.run(movieId, studioId);
-        }
-      }
-    );
-
+  ): Promise<void> {
     try {
+      const insertMany = this.repository.transaction(
+        (studiosIds: (number | bigint)[]) => {
+          const stmt = this.repository.prepare(`
+          INSERT INTO movie_studios (movie_id, studio_id)
+          VALUES (?, ?)
+        `);
+          for (const studioId of studiosIds) {
+            stmt.run(movieId, studioId);
+          }
+        }
+      );
+
       insertMany(studiosIds);
-      return true;
     } catch (error) {
-      return false;
+      console.error("Error inserting studios:", error);
+      throw new Error("Failed to insert studios");
     }
   }
 }

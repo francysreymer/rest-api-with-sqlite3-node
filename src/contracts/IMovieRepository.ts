@@ -7,9 +7,9 @@ export default interface IMovieRepository {
   saveManyProducers(
     movieId: number | bigint,
     producersIds: (number | bigint)[]
-  ): Promise<boolean>;
+  ): Promise<void>;
   saveManyStudios(
     movieId: number | bigint,
     studiosIds: (number | bigint)[]
-  ): Promise<boolean>;
+  ): Promise<void>;
 }
