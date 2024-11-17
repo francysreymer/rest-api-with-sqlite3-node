@@ -4,7 +4,7 @@ import movieAwardRoutes from "@/routes/movieAwardRoutes";
 import container from "@/config/container";
 import TYPES from "@/config/types";
 import SeedFromCSVService from "@/services/SeedFromCSVService";
-import MigrationService from "./services/MigrationService";
+import MigrationService from "@/services/MigrationService";
 import dotenvSafe from "dotenv-safe";
 
 // Load environment variables from .env file and ensure required variables are set
