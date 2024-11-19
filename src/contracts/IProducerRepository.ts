@@ -1,5 +1,5 @@
-import { Producer } from "@/entities/Producer";
-import { WinnerProducer } from "@/types/WinnerProducer";
+import { Producer } from '@/entities/Producer';
+import { WinnerProducer } from '@/types/WinnerProducer';
 
 export default interface IProducerRepository {
   save(producer: Producer): Promise<Producer>;

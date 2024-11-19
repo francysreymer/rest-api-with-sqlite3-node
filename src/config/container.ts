@@ -1,18 +1,19 @@
-import "reflect-metadata";
-import { Container } from "inversify";
-import IMovieRepository from "@/contracts/IMovieRepository";
-import IProducerRepository from "@/contracts/IProducerRepository";
-import IStudioRepository from "@/contracts/IStudioRepository";
-import MovieRepository from "@/repositories/MovieRepository";
-import ProducerRepository from "@/repositories/ProducerRepository";
-import StudioRepository from "@/repositories/StudioRepository";
-import IMovieAwardService from "@/contracts/IMovieAwardService";
-import MovieAwardService from "@/services/MovieAwardService";
-import SeedFromCSVService from "@/services/SeedFromCSVService";
-import MigrationService from "@/services/MigrationService";
-import TYPES from "@/config/types";
-import db from "@/config/db";
-import MovieAwardController from "@/controllers/MovieAwardController";
+import 'reflect-metadata';
+import { Container } from 'inversify';
+
+import db from '@/config/db';
+import TYPES from '@/config/types';
+import IMovieAwardService from '@/contracts/IMovieAwardService';
+import IMovieRepository from '@/contracts/IMovieRepository';
+import IProducerRepository from '@/contracts/IProducerRepository';
+import IStudioRepository from '@/contracts/IStudioRepository';
+import MovieAwardController from '@/controllers/MovieAwardController';
+import MovieRepository from '@/repositories/MovieRepository';
+import ProducerRepository from '@/repositories/ProducerRepository';
+import StudioRepository from '@/repositories/StudioRepository';
+import MigrationService from '@/services/MigrationService';
+import MovieAwardService from '@/services/MovieAwardService';
+import SeedFromCSVService from '@/services/SeedFromCSVService';
 
 const container = new Container();
 

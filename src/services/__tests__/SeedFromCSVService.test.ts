@@ -1,23 +1,24 @@
-import { writeFileSync, unlinkSync } from "fs";
-import path from "path";
-import SeedFromCSVService from "@/services/SeedFromCSVService";
-import MovieRepository from "@/repositories/MovieRepository";
-import ProducerRepository from "@/repositories/ProducerRepository";
-import StudioRepository from "@/repositories/StudioRepository";
-import Database from "better-sqlite3";
-import { Container } from "inversify";
-import TYPES from "@/config/types";
+import Database from 'better-sqlite3';
+import { writeFileSync, unlinkSync } from 'fs';
+import { Container } from 'inversify';
+import path from 'path';
 
-describe("SeedFromCSVService", () => {
+import TYPES from '@/config/types';
+import MovieRepository from '@/repositories/MovieRepository';
+import ProducerRepository from '@/repositories/ProducerRepository';
+import StudioRepository from '@/repositories/StudioRepository';
+import SeedFromCSVService from '@/services/SeedFromCSVService';
+
+describe('SeedFromCSVService', () => {
   let db: Database.Database;
   let seedService: SeedFromCSVService;
   let movieRepository: MovieRepository;
   let producerRepository: ProducerRepository;
   let studioRepository: StudioRepository;
-  const tempFilePath = path.join(__dirname, "testData.csv");
+  const tempFilePath = path.join(__dirname, 'testData.csv');
 
   beforeEach(() => {
-    db = new Database(":memory:");
+    db = new Database(':memory:');
     movieRepository = new MovieRepository(db);
     producerRepository = new ProducerRepository(db);
     studioRepository = new StudioRepository(db);
@@ -36,7 +37,7 @@ describe("SeedFromCSVService", () => {
     seedService = new SeedFromCSVService(
       movieRepository,
       producerRepository,
-      studioRepository
+      studioRepository,
     );
 
     // Create tables
@@ -84,7 +85,7 @@ describe("SeedFromCSVService", () => {
     // Create a temporary CSV file with sample data
     writeFileSync(
       tempFilePath,
-      "year;title;studios;producers;winner\n2000;First Win;Studio A;Producer A;yes\n2010;Second Win;Studio B;Producer A;yes\n2011;Single Win;Studio C;Producer B;yes\n"
+      'year;title;studios;producers;winner\n2000;First Win;Studio A;Producer A;yes\n2010;Second Win;Studio B;Producer A;yes\n2011;Single Win;Studio C;Producer B;yes\n',
     );
   });
 
@@ -94,37 +95,37 @@ describe("SeedFromCSVService", () => {
     db.close();
   });
 
-  it("should parse CSV and initialize data correctly", async () => {
+  it('should parse CSV and initialize data correctly', async () => {
     await seedService.initializeDataFrom(tempFilePath);
 
     // Verify movies
-    const movies = db.prepare("SELECT * FROM movies").all();
+    const movies = db.prepare('SELECT * FROM movies').all();
     expect(movies).toHaveLength(3);
     expect(movies).toEqual([
-      { id: 1, year: 2000, title: "First Win", winner: 1 },
-      { id: 2, year: 2010, title: "Second Win", winner: 1 },
-      { id: 3, year: 2011, title: "Single Win", winner: 1 },
+      { id: 1, year: 2000, title: 'First Win', winner: 1 },
+      { id: 2, year: 2010, title: 'Second Win', winner: 1 },
+      { id: 3, year: 2011, title: 'Single Win', winner: 1 },
     ]);
 
     // Verify producers
-    const producers = db.prepare("SELECT * FROM producers").all();
+    const producers = db.prepare('SELECT * FROM producers').all();
     expect(producers).toHaveLength(2);
     expect(producers).toEqual([
-      { id: 1, name: "Producer A" },
-      { id: 2, name: "Producer B" },
+      { id: 1, name: 'Producer A' },
+      { id: 2, name: 'Producer B' },
     ]);
 
     // Verify studios
-    const studios = db.prepare("SELECT * FROM studios").all();
+    const studios = db.prepare('SELECT * FROM studios').all();
     expect(studios).toHaveLength(3);
     expect(studios).toEqual([
-      { id: 1, name: "Studio A" },
-      { id: 2, name: "Studio B" },
-      { id: 3, name: "Studio C" },
+      { id: 1, name: 'Studio A' },
+      { id: 2, name: 'Studio B' },
+      { id: 3, name: 'Studio C' },
     ]);
 
     // Verify movie_producers
-    const movieProducers = db.prepare("SELECT * FROM movie_producers").all();
+    const movieProducers = db.prepare('SELECT * FROM movie_producers').all();
     expect(movieProducers).toHaveLength(3);
     expect(movieProducers).toEqual([
       { movie_id: 1, producer_id: 1 },
@@ -133,7 +134,7 @@ describe("SeedFromCSVService", () => {
     ]);
 
     // Verify movie_studios
-    const movieStudios = db.prepare("SELECT * FROM movie_studios").all();
+    const movieStudios = db.prepare('SELECT * FROM movie_studios').all();
     expect(movieStudios).toHaveLength(3);
     expect(movieStudios).toEqual([
       { movie_id: 1, studio_id: 1 },

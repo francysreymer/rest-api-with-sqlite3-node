@@ -1,15 +1,16 @@
-import { injectable, inject } from "inversify";
-import IProducerRepository from "@/contracts/IProducerRepository";
-import IMovieAwardService from "@/contracts/IMovieAwardService";
-import TYPES from "@/config/types";
-import { WinnerProducer } from "@/types/WinnerProducer";
+import { injectable, inject } from 'inversify';
+
+import TYPES from '@/config/types';
+import IMovieAwardService from '@/contracts/IMovieAwardService';
+import IProducerRepository from '@/contracts/IProducerRepository';
+import { WinnerProducer } from '@/types/WinnerProducer';
 
 @injectable()
 export default class MovieAwardService implements IMovieAwardService {
   private producerRepository: IProducerRepository;
 
   constructor(
-    @inject(TYPES.IProducerRepository) producerRepository: IProducerRepository
+    @inject(TYPES.IProducerRepository) producerRepository: IProducerRepository,
   ) {
     this.producerRepository = producerRepository;
   }

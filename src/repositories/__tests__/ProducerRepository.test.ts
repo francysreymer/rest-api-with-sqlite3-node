@@ -1,13 +1,14 @@
-import Database from "better-sqlite3";
-import ProducerRepository from "@/repositories/ProducerRepository";
-import { WinnerProducer } from "@/types/WinnerProducer";
+import Database from 'better-sqlite3';
 
-describe("ProducerRepository", () => {
+import ProducerRepository from '@/repositories/ProducerRepository';
+import { WinnerProducer } from '@/types/WinnerProducer';
+
+describe('ProducerRepository', () => {
   let db: Database.Database;
   let producerRepository: ProducerRepository;
 
   beforeEach(() => {
-    db = new Database(":memory:");
+    db = new Database(':memory:');
     producerRepository = new ProducerRepository(db);
 
     // Create tables
@@ -58,14 +59,14 @@ describe("ProducerRepository", () => {
     db.close();
   });
 
-  it("should find producers with the maximum award intervals", async () => {
+  it('should find producers with the maximum award intervals', async () => {
     const result =
       await producerRepository.findProducersWithMaxAwardIntervals();
 
     // Define expected results based on the test data
     const expectedMaxWinners: WinnerProducer[] = [
       {
-        producer: "Producer A",
+        producer: 'Producer A',
         interval: 10,
         previousWin: 2000,
         followingWin: 2010,
@@ -76,14 +77,14 @@ describe("ProducerRepository", () => {
     expect(result).toEqual(expectedMaxWinners);
   });
 
-  it("should find producers with the minimum award intervals", async () => {
+  it('should find producers with the minimum award intervals', async () => {
     const result =
       await producerRepository.findProducersWithMinAwardIntervals();
 
     // Define expected results based on the test data
     const expectedMinWinners: WinnerProducer[] = [
       {
-        producer: "Producer B",
+        producer: 'Producer B',
         interval: 1,
         previousWin: 2011,
         followingWin: 2012,
@@ -94,7 +95,7 @@ describe("ProducerRepository", () => {
     expect(result).toEqual(expectedMinWinners);
   });
 
-  it("should handle multiple producers with the same max and min intervals", async () => {
+  it('should handle multiple producers with the same max and min intervals', async () => {
     // Insert additional test data to create multiple producers with the same intervals
     db.exec(`
       INSERT INTO producers (name) VALUES ('Producer D');
@@ -117,13 +118,13 @@ describe("ProducerRepository", () => {
     // Define expected results based on the test data
     const expectedMaxWinners: WinnerProducer[] = [
       {
-        producer: "Producer A",
+        producer: 'Producer A',
         interval: 10,
         previousWin: 2000,
         followingWin: 2010,
       },
       {
-        producer: "Producer D",
+        producer: 'Producer D',
         interval: 10,
         previousWin: 2000,
         followingWin: 2010,
@@ -132,13 +133,13 @@ describe("ProducerRepository", () => {
 
     const expectedMinWinners: WinnerProducer[] = [
       {
-        producer: "Producer B",
+        producer: 'Producer B',
         interval: 1,
         previousWin: 2011,
         followingWin: 2012,
       },
       {
-        producer: "Producer E",
+        producer: 'Producer E',
         interval: 1,
         previousWin: 2000,
         followingWin: 2001,
@@ -150,7 +151,7 @@ describe("ProducerRepository", () => {
     expect(minResult).toEqual(expectedMinWinners);
   });
 
-  it("should not return intervals of zero", async () => {
+  it('should not return intervals of zero', async () => {
     // Insert additional test data to create intervals of zero
     db.exec(`
       INSERT INTO producers (name) VALUES ('Producer F');
@@ -166,7 +167,7 @@ describe("ProducerRepository", () => {
     // Define expected results based on the test data
     const expectedMinWinners: WinnerProducer[] = [
       {
-        producer: "Producer B",
+        producer: 'Producer B',
         interval: 1,
         previousWin: 2011,
         followingWin: 2012,

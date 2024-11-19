@@ -1,23 +1,24 @@
-import { Request, Response } from "express";
-import { inject, injectable } from "inversify";
-import IMovieAwardService from "@/contracts/IMovieAwardService";
-import TYPES from "@/config/types";
-import { StatusCodes } from "http-status-codes";
-import createError from "http-errors";
+import { Request, Response } from 'express';
+import createError from 'http-errors';
+import { StatusCodes } from 'http-status-codes';
+import { inject, injectable } from 'inversify';
+
+import TYPES from '@/config/types';
+import IMovieAwardService from '@/contracts/IMovieAwardService';
 
 @injectable()
 export default class MovieAwardController {
   private movieService: IMovieAwardService;
 
   constructor(
-    @inject(TYPES.IMovieAwardService) movieService: IMovieAwardService
+    @inject(TYPES.IMovieAwardService) movieService: IMovieAwardService,
   ) {
     this.movieService = movieService;
   }
 
   getProducersWithMaxAndMinAwardIntervals = async (
     req: Request,
-    res: Response
+    res: Response,
   ): Promise<Response> => {
     try {
       const result =
@@ -32,7 +33,7 @@ export default class MovieAwardController {
         message:
           error instanceof Error
             ? error.message
-            : "An unexpected error occurred",
+            : 'An unexpected error occurred',
       });
     }
   };

@@ -1,6 +1,7 @@
-import { injectable, inject } from "inversify";
-import TYPES from "@/config/types";
-import Database from "better-sqlite3";
+import Database from 'better-sqlite3';
+import { injectable, inject } from 'inversify';
+
+import TYPES from '@/config/types';
 
 @injectable()
 export default class MigrationService {
@@ -42,7 +43,7 @@ export default class MigrationService {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT UNIQUE
         )
-      `
+      `,
       )
       .run();
   }
@@ -55,7 +56,7 @@ export default class MigrationService {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT UNIQUE
         )
-      `
+      `,
       )
       .run();
   }
@@ -70,7 +71,7 @@ export default class MigrationService {
           year INTEGER,
           winner INTEGER  -- Use INTEGER for boolean values (0 or 1)
         )
-      `
+      `,
       )
       .run();
   }
@@ -86,7 +87,7 @@ export default class MigrationService {
           FOREIGN KEY(studio_id) REFERENCES studios(id),
           PRIMARY KEY (movie_id, studio_id)
         )
-      `
+      `,
       )
       .run();
   }
@@ -102,7 +103,7 @@ export default class MigrationService {
           FOREIGN KEY(producer_id) REFERENCES producers(id),
           PRIMARY KEY (movie_id, producer_id)
         )
-      `
+      `,
       )
       .run();
   }

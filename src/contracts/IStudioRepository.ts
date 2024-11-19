@@ -1,4 +1,4 @@
-import { Studio } from "@/entities/Studio";
+import { Studio } from '@/entities/Studio';
 
 export default interface IStudioRepository {
   save(studio: Studio): Promise<Studio>;

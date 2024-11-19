@@ -1,8 +1,9 @@
-import { injectable, inject } from "inversify";
-import Database from "better-sqlite3";
-import { Studio } from "@/entities/Studio";
-import IStudioRepository from "@/contracts/IStudioRepository";
-import TYPES from "@/config/types";
+import Database from 'better-sqlite3';
+import { injectable, inject } from 'inversify';
+
+import TYPES from '@/config/types';
+import IStudioRepository from '@/contracts/IStudioRepository';
+import { Studio } from '@/entities/Studio';
 
 @injectable()
 export default class StudioRepository implements IStudioRepository {
@@ -22,7 +23,7 @@ export default class StudioRepository implements IStudioRepository {
     const savedStudio = await this.findById(info.lastInsertRowid);
 
     if (!savedStudio) {
-      throw new Error("Failed to save studio");
+      throw new Error('Failed to save studio');
     }
 
     return savedStudio;

@@ -1,9 +1,10 @@
-import { injectable, inject } from "inversify";
-import Database from "better-sqlite3";
-import { Producer } from "@/entities/Producer";
-import IProducerRepository from "@/contracts/IProducerRepository";
-import TYPES from "@/config/types";
-import { WinnerProducer } from "@/types/WinnerProducer";
+import Database from 'better-sqlite3';
+import { injectable, inject } from 'inversify';
+
+import TYPES from '@/config/types';
+import IProducerRepository from '@/contracts/IProducerRepository';
+import { Producer } from '@/entities/Producer';
+import { WinnerProducer } from '@/types/WinnerProducer';
 
 @injectable()
 export default class ProducerRepository implements IProducerRepository {
@@ -23,7 +24,7 @@ export default class ProducerRepository implements IProducerRepository {
     const savedProducer = await this.findById(info.lastInsertRowid);
 
     if (!savedProducer) {
-      throw new Error("Failed to save Producer");
+      throw new Error('Failed to save Producer');
     }
 
     return savedProducer;
