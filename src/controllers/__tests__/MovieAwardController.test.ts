@@ -65,6 +65,43 @@ describe('MovieAwardController', () => {
     await migrationService.revertMigrations();
   });
 
+  it('should return producers with the MAX and MIN award intervals (using standard CSV data)', async () => {
+    // Read the standard CSV data
+    const standardData = readCSVData();
+    writeCSVData(standardData);
+
+    // Seed the database
+    const seedService = container.get<SeedFromCSVService>(
+      TYPES.SeedFromCSVService,
+    );
+    await seedService.initializeDataFrom(tempFilePath);
+
+    const response = await request(app).get(URL_API);
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.max).toEqual(expectedStandardMaxWinners);
+    expect(response.body.min).toEqual(expectedStandardMinWinners);
+  });
+
+  it('should fail if the data does not match the expected MAX and MIN award intervals (using standard CSV data)', async () => {
+    // Create a temporary CSV file with different sample data
+    writeCSVData(
+      'year;title;studios;producers;winner\n2011;Zero Interval Win 1;Studio A;Producer A;yes\n2011;Zero Interval Win 2;Studio B;Producer A;yes\n',
+    );
+
+    // Seed the database
+    const seedService = container.get<SeedFromCSVService>(
+      TYPES.SeedFromCSVService,
+    );
+    await seedService.initializeDataFrom(tempFilePath);
+
+    const response = await request(app).get(URL_API);
+
+    expect(response.status).toBe(StatusCodes.OK);
+    expect(response.body.min).not.toEqual(expectedStandardMinWinners);
+    expect(response.body.max).not.toEqual(expectedStandardMaxWinners);
+  });
+
   it('should return producers with the MAX award intervals (using fictitious data)', async () => {
     // Create a temporary CSV file with sample data
     writeCSVData(
@@ -210,42 +247,5 @@ describe('MovieAwardController', () => {
     expect(response.status).toBe(StatusCodes.OK);
     expect(response.body.min).toEqual(expectedMinWinners);
     expect(response.body.max).toEqual(expectedMaxWinners);
-  });
-
-  it('should return producers with the MAX and MIN award intervals (using standard CSV data)', async () => {
-    // Read the standard CSV data
-    const standardData = readCSVData();
-    writeCSVData(standardData);
-
-    // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
-      TYPES.SeedFromCSVService,
-    );
-    await seedService.initializeDataFrom(tempFilePath);
-
-    const response = await request(app).get(URL_API);
-
-    expect(response.status).toBe(StatusCodes.OK);
-    expect(response.body.max).toEqual(expectedStandardMaxWinners);
-    expect(response.body.min).toEqual(expectedStandardMinWinners);
-  });
-
-  it('should fail if the data does not match the expected MAX and MIN award intervals (using standard CSV data)', async () => {
-    // Create a temporary CSV file with different sample data
-    writeCSVData(
-      'year;title;studios;producers;winner\n2011;Zero Interval Win 1;Studio A;Producer A;yes\n2011;Zero Interval Win 2;Studio B;Producer A;yes\n',
-    );
-
-    // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
-      TYPES.SeedFromCSVService,
-    );
-    await seedService.initializeDataFrom(tempFilePath);
-
-    const response = await request(app).get(URL_API);
-
-    expect(response.status).toBe(StatusCodes.OK);
-    expect(response.body.min).not.toEqual(expectedStandardMinWinners);
-    expect(response.body.max).not.toEqual(expectedStandardMaxWinners);
   });
 });
