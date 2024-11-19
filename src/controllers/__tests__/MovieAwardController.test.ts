@@ -18,13 +18,28 @@ const standardFilePath = path.join(
   'testData',
   '../../../../temp/movielist.csv',
 );
-
 const writeCSVData = (data: string) => {
   writeFileSync(tempFilePath, data);
 };
 const readCSVData = () => {
   return readFileSync(standardFilePath, 'utf-8');
 };
+const expectedStandardMaxWinners: WinnerProducer[] = [
+  {
+    producer: 'Matthew Vaughn',
+    interval: 13,
+    previousWin: 2002,
+    followingWin: 2015,
+  },
+];
+const expectedStandardMinWinners: WinnerProducer[] = [
+  {
+    producer: 'Joel Silver',
+    interval: 1,
+    previousWin: 1990,
+    followingWin: 1991,
+  },
+];
 
 // Set up the Express app
 const app = express();
@@ -208,29 +223,11 @@ describe('MovieAwardController', () => {
     );
     await seedService.initializeDataFrom(tempFilePath);
 
-    const expectedMaxWinners: WinnerProducer[] = [
-      {
-        producer: 'Matthew Vaughn',
-        interval: 13,
-        previousWin: 2002,
-        followingWin: 2015,
-      },
-    ];
-
-    const expectedMinWinners: WinnerProducer[] = [
-      {
-        producer: 'Joel Silver',
-        interval: 1,
-        previousWin: 1990,
-        followingWin: 1991,
-      },
-    ];
-
     const response = await request(app).get(URL_API);
 
     expect(response.status).toBe(StatusCodes.OK);
-    expect(response.body.max).toEqual(expectedMaxWinners);
-    expect(response.body.min).toEqual(expectedMinWinners);
+    expect(response.body.max).toEqual(expectedStandardMaxWinners);
+    expect(response.body.min).toEqual(expectedStandardMinWinners);
   });
 
   it('should fail if the data does not match the expected MAX and MIN award intervals (using standard CSV data)', async () => {
@@ -245,28 +242,10 @@ describe('MovieAwardController', () => {
     );
     await seedService.initializeDataFrom(tempFilePath);
 
-    const expectedMaxWinners: WinnerProducer[] = [
-      {
-        producer: 'Matthew Vaughn',
-        interval: 13,
-        previousWin: 2002,
-        followingWin: 2015,
-      },
-    ];
-
-    const expectedMinWinners: WinnerProducer[] = [
-      {
-        producer: 'Joel Silver',
-        interval: 1,
-        previousWin: 1990,
-        followingWin: 1991,
-      },
-    ];
-
     const response = await request(app).get(URL_API);
 
     expect(response.status).toBe(StatusCodes.OK);
-    expect(response.body.min).not.toEqual(expectedMinWinners);
-    expect(response.body.max).not.toEqual(expectedMaxWinners);
+    expect(response.body.min).not.toEqual(expectedStandardMinWinners);
+    expect(response.body.max).not.toEqual(expectedStandardMaxWinners);
   });
 });
