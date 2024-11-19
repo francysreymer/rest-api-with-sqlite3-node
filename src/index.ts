@@ -19,7 +19,7 @@ app.use('/api', movieAwardRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, async () => {
+(async () => {
   const migrationService = container.get<MigrationService>(
     TYPES.MigrationService,
   );
@@ -29,5 +29,8 @@ app.listen(PORT, async () => {
     TYPES.SeedFromCSVService,
   );
   await seedFromCSVService.initializeDataFrom('./temp/movielist.csv');
+})();
+
+app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
 });
