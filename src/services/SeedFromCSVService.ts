@@ -99,7 +99,6 @@ export default class SeedFromCSVService {
           this.movieRepository.saveManyStudios(savedMovie.id, validStudioIds),
         ]);
       }
-      console.log('Database initialized with movies from CSV.');
     } catch (error) {
       console.error('Error during database initialization from CSV:', error);
     }
