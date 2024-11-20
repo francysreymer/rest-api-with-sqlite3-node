@@ -10,18 +10,18 @@ This RESTful API reads data from a CSV file and provides information about the p
 {
     "min": [
         {
-            "producer": "Allan Carr",
-            "interval": 5,
-            "previousWin": 1978,
-            "followingWin": 1983
+            "producer": "Joel Silver",
+            "interval": 1,
+            "previousWin": 1990,
+            "followingWin": 1991
         }
     ],
     "max": [
         {
-            "producer": "Steven Spielberg",
-            "interval": 10,
-            "previousWin": 1979,
-            "followingWin": 1989
+            "producer": "Matthew Vaughn",
+            "interval": 13,
+            "previousWin": 2002,
+            "followingWin": 2015
         }
     ]
 }
@@ -52,6 +52,10 @@ This RESTful API reads data from a CSV file and provides information about the p
     Inside the project folder, copy the `.env.example` file and rename it to `.env`. Set the `PORT` variable to the desired port number, or leave it blank to use the default port 3000.
 
 3. **Place a CSV file named `movielist.csv` inside the `/temp` folder.**
+    - There is already a file with the same name (`movielist.csv`) containing standard data. This file is used as a reference for integration tests.
+    - If you want to test with other data, the file can be modified. However, a specific integration test should fail because the results will be different from those provided by the API with the standard data.
+
+![Integration Test Explanation](./assets/img/integration-test-explanation.png)
 
 4. **Install dependencies and start the server:**
 
