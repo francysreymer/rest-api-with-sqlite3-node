@@ -8,20 +8,20 @@ Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os pr
 
 ```JSON
 {
-    "min": [
+   "min": [
         {
-            "producer": "Allan Carr",
-            "interval": 5,
-            "previousWin": 1978,
-            "followingWin": 1983
+            "producer": "Joel Silver",
+            "interval": 1,
+            "previousWin": 1990,
+            "followingWin": 1991
         }
     ],
     "max": [
         {
-            "producer": "Steven Spielberg",
-            "interval": 10,
-            "previousWin": 1979,
-            "followingWin": 1989
+            "producer": "Matthew Vaughn",
+            "interval": 13,
+            "previousWin": 2002,
+            "followingWin": 2015
         }
     ]
 }
