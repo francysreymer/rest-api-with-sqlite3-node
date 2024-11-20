@@ -52,6 +52,10 @@ Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os pr
     Dentro da pasta do projeto, copie o arquivo `.env.example` e renomeie-o para `.env`. Defina a variável `PORT` para o número da porta desejada ou deixe em branco para usar a porta padrão 3000.
 
 3. **Coloque um arquivo CSV chamado `movielist.csv` dentro da pasta `/temp`.**
+   - Já existe um arquivo com o mesmo nome (`movielist.csv`) contendo dados padrão. Este arquivo é utilizado como referência para os testes de integração.
+   - Se você desejar testar com outros dados, o arquivo pode ser alterado. No entanto, um teste específico de integração deverá falhar, pois os resultados serão diferentes dos esperados com os dados padrão.
+
+![Integration Test Explanation](./assets/integration-test-explanation.png)
 
 4. **Instale as dependências e inicie o servidor:**
 
