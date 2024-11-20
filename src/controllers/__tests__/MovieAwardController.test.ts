@@ -65,7 +65,7 @@ describe('MovieAwardController', () => {
     await migrationService.revertMigrations();
   });
 
-  it('should return producers with the MAX and MIN award intervals (using standard CSV data)', async () => {
+  it('should return producers with the expected MAX and MIN award intervals (using standard CSV data)', async () => {
     // Read the standard CSV data
     const standardData = readCSVData();
     writeCSVData(standardData);
