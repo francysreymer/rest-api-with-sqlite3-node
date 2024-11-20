@@ -8,12 +8,12 @@ import IMovieAwardService from '@/contracts/IMovieAwardService';
 
 @injectable()
 export default class MovieAwardController {
-  private movieService: IMovieAwardService;
+  private movieAwardService: IMovieAwardService;
 
   constructor(
-    @inject(TYPES.IMovieAwardService) movieService: IMovieAwardService,
+    @inject(TYPES.IMovieAwardService) movieAwardService: IMovieAwardService,
   ) {
-    this.movieService = movieService;
+    this.movieAwardService = movieAwardService;
   }
 
   getProducersWithMaxAndMinAwardIntervals = async (
@@ -22,7 +22,7 @@ export default class MovieAwardController {
   ): Promise<Response> => {
     try {
       const result =
-        await this.movieService.getProducersWithMaxAndMinAwardIntervals();
+        await this.movieAwardService.getProducersWithMaxAndMinAwardIntervals();
       return res.status(StatusCodes.OK).json(result);
     } catch (error) {
       if (error instanceof createError.HttpError) {
