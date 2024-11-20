@@ -55,7 +55,7 @@ Esta API RESTful lê dados de um arquivo CSV e fornece informações sobre os pr
    - Já existe um arquivo com o mesmo nome (`movielist.csv`) contendo dados padrão. Este arquivo é utilizado como referência para os testes de integração.
    - Se você desejar testar com outros dados, o arquivo pode ser alterado. No entanto, um teste específico de integração deverá falhar, pois os resultados serão diferentes dos esperados com os dados padrão.
 
-![Integration Test Explanation](./assets/integration-test-explanation.png)
+![Integration Test Explanation](./assets/img/integration-test-explanation.png)
 
 4. **Instale as dependências e inicie o servidor:**
 
