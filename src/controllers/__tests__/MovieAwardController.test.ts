@@ -71,10 +71,10 @@ describe('MovieAwardController', () => {
     writeCSVData(standardData);
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 
@@ -83,17 +83,17 @@ describe('MovieAwardController', () => {
     expect(response.body.min).toEqual(expectedStandardMinWinners);
   });
 
-  it('should fail if the data does not match the expected MAX and MIN award intervals (using standard CSV data)', async () => {
+  it('should fail if the data does not match the expected standard MAX and MIN award intervals (using fictitious data)', async () => {
     // Create a temporary CSV file with different sample data
     writeCSVData(
       'year;title;studios;producers;winner\n2011;Zero Interval Win 1;Studio A;Producer A;yes\n2011;Zero Interval Win 2;Studio B;Producer A;yes\n',
     );
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 
@@ -109,10 +109,10 @@ describe('MovieAwardController', () => {
     );
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 
@@ -136,10 +136,10 @@ describe('MovieAwardController', () => {
     );
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 
@@ -163,10 +163,10 @@ describe('MovieAwardController', () => {
     );
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 
@@ -212,10 +212,10 @@ describe('MovieAwardController', () => {
     );
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 
@@ -234,10 +234,10 @@ describe('MovieAwardController', () => {
     );
 
     // Seed the database
-    const seedService = container.get<SeedFromCSVService>(
+    const seedFromCSVService = container.get<SeedFromCSVService>(
       TYPES.SeedFromCSVService,
     );
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     const response = await request(app).get(URL_API);
 

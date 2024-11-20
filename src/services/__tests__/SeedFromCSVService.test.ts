@@ -11,7 +11,7 @@ import SeedFromCSVService from '@/services/SeedFromCSVService';
 
 describe('SeedFromCSVService', () => {
   let db: Database.Database;
-  let seedService: SeedFromCSVService;
+  let seedFromCSVService: SeedFromCSVService;
   let movieRepository: MovieRepository;
   let producerRepository: ProducerRepository;
   let studioRepository: StudioRepository;
@@ -34,7 +34,7 @@ describe('SeedFromCSVService', () => {
       .bind<StudioRepository>(TYPES.IStudioRepository)
       .toConstantValue(studioRepository);
 
-    seedService = new SeedFromCSVService(
+    seedFromCSVService = new SeedFromCSVService(
       movieRepository,
       producerRepository,
       studioRepository,
@@ -96,7 +96,7 @@ describe('SeedFromCSVService', () => {
   });
 
   it('should parse CSV and initialize data correctly', async () => {
-    await seedService.initializeDataFrom(tempFilePath);
+    await seedFromCSVService.initializeDataFrom(tempFilePath);
 
     // Verify movies
     const movies = db.prepare('SELECT * FROM movies').all();
